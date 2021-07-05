@@ -1,0 +1,92 @@
+.background {
+    background-color: black;
+    display: none;
+    position: absolute;
+}
+
+.project {
+    margin-top: 50px;
+}
+
+.project-techs {
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.project-techs li {
+    color: #FA865A;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    list-style: none;
+}
+
+.references {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.references li {
+    list-style: none;
+    text-decoration: 3px underline #FA865A;
+    font-weight: 900;
+    color: #141B4D;
+    cursor: pointer;
+}
+
+.references li a {
+    color: #141B4D;
+    text-decoration: 3px underline #FA865A;
+}
+
+.slider {
+    position: fixed;
+    display: none;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 70%;
+    background-color: white;
+}
+
+.slide {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    max-height: 600px;
+    overflow-y: scroll;
+    transform: translate(-50%, 0);
+    background-color: black;
+}
+
+.slide img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.arrows {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: white;
+}
+
+
+/*responsive part*/
+@media screen and (max-width: 992px) {
+    .references {
+        display: block;
+    }
+    .references li {
+        padding-bottom: 20px;
+    }
+}

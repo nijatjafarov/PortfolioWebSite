@@ -1,0 +1,25 @@
+.blog {
+    margin-bottom: 50px;
+}
+
+.date-and-link {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-and-link a {
+    text-decoration: 3px underline #FA865A;
+    font-weight: 900;
+    color: #141B4D;
+}
+
+/*responsive part*/
+@media screen and (max-width: 550px) {
+    .date-and-link {
+        display: block;
+    }
+    .date-and-link p {
+        margin: 4px 0;
+    }
+}

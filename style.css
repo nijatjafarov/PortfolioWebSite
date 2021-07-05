@@ -1,0 +1,225 @@
+/*Common styles*/
+.header-font {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    color: #141B4D;
+    word-break: break-all;
+}
+
+.main-font {
+    font-family: 'Futurica', sans-serif;
+    font-size: 22px;
+    line-height: 30px;
+    color: #727694;
+}
+
+.section {
+    margin-top: 70px;
+}
+
+.page-info {
+    font-weight: 100;
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+p span {
+    font-weight: 900;
+}
+
+body {
+    margin: 0;
+    border: 8px solid #FA865A;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    margin-top: 40px;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navbar ul{
+    display: flex;
+    margin: 0;
+}
+
+.navbar ul li{
+    list-style: none;
+    padding-right: 30px;
+    
+    font-size: 22px;
+    
+}
+
+.main-header i {
+    font-size: 40px;
+    color: #141B4D;
+    display: none;
+}
+
+.navbar ul li a {
+    color: #141B4D;
+    text-decoration: 2px underline #FA865A;
+}
+
+.main-part {
+    margin-top: 70px;
+}
+
+.info h1 {
+    margin: 0;
+}
+
+.additional-info-list {
+    font-size: 30px;
+    color: #141B4D;
+}
+
+
+
+.section h3{
+    margin: 0;
+}
+
+.responsive-header {
+    display: none;
+    overflow: hidden;
+    height: 0px;
+    transition: all 0.5s;
+    transition-timing-function: ease;
+}
+
+.responsive-header ul {
+    display: block;
+}
+
+.responsive-header ul li {
+    padding-bottom: 10px;
+}
+
+
+/*special styles*/
+.technology {
+    margin-top: 30px;
+}
+
+.technology h4{
+    font-size: 40px;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.technology p {
+    margin: 0;
+    margin-top: 4px;
+}
+
+.technology span {
+    font-weight: bold;
+}
+
+/*Reviews*/
+.comments-container {
+    overflow: auto;
+}
+
+.comments {
+    display: inline-flex;
+}
+
+.comment {
+    position: relative;
+    width: 302px;
+    padding-right: 30px;
+    margin-top: 100px;
+}
+.comment-quote {
+    margin: 0;
+    font-size: 100px;
+    position: absolute;
+    top: -80px;
+}
+.comment-content {
+    margin-top: 0;
+}
+
+.comment-owner {
+    color: #141B4D;
+    margin: 0;
+}
+
+.owner-profession {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 300;
+    color: #FA865A;
+}
+
+
+/*Footer part*/
+footer {
+    margin-bottom: 40px;
+    margin-top: 90px;
+}
+.lets-chat {
+    border-top: 3px solid #141B4D;
+    padding-top: 20px;
+}
+
+.footer-contact {
+    margin: 0;
+    margin-top: 20px;
+}
+
+.footer-contact p{
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+/*responsive part*/
+@media screen and (max-width: 768px) {
+    .main-navbar {
+        display: none;
+    }
+    .main-header {
+        justify-content: space-between;
+    }
+    .main-header i {
+        display: block;
+    }
+    .responsive-header {
+        display: block;
+    }
+    .main-font {
+        font-size: 20px;
+    }
+    .header-font {
+        font-size: 55px;
+    }
+    .comment-quote {
+        font-size: 100px;
+    }
+    .technology h4{
+        font-size: 37px;
+    }
+    .additional-info-list {
+        font-size: 27px;
+    }
+}
