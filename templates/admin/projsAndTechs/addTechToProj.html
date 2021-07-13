@@ -1,0 +1,23 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Layihəyə texnologiya əlavə et</h3>
+<form method="POST">
+    <div class="form-group">
+        <label for="project_id">Layihə</label>
+        <select class="form-control" id="project_id" name="project_id">
+            {% for project in projects %}
+                <option value="{{ project.id }}">{{ project.name }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="technology_id">Texnologiya</label>
+        <select class="form-control" id="technology_id" name="technology_id" multiple>
+            {% for technology in technologies %}
+                <option value="{{ technology.id }}">{{ technology.name }}</option>
+            {% endfor %}
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>
+</form>
+{% endblock %}

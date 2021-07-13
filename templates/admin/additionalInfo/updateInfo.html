@@ -1,0 +1,23 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Məlumatda düzəliş et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.info.label() }}
+      {% if form.info.errors %}
+        {{ form.info(class="form-control form-control-lg is-invalid", value = info.info, placeholder = "Məlumatda düzəliş et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.info.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.info(class="form-control form-contorl-lg", value = info.info, placeholder = "Məlumatda düzəliş et") }}
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Düzəliş et</button>
+</form>
+{% endblock %}

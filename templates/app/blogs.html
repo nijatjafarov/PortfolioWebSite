@@ -1,0 +1,22 @@
+{% extends "app/layout.html" %}
+    {% block head %}
+    <link rel="stylesheet" href="../../static/css/app/blogs.css">
+    <title>Məqalələrim</title>
+    {% endblock %}
+    {% block content %}
+    <h2 class="main-font page-info">SEÇİLMİŞ MƏQALƏLƏRİM</h2>
+    <div class="section">
+        {% for blog in blogs %}
+        <div class="blog">
+            <h3 class="header-font">{{ blog.header }}</h3>
+            <div class="technology">
+                <p class="main-font">{{ blog.content }}...</p>
+                    <div class="date-and-link">
+                        <p class="main-font">Tarix: <span>{{ blog.date.strftime("%d/%m/%Y") }}</span></p>
+                        <a class="main-font" href="{{ blog.url }}" target="_blank">Ətraflı oxuyun</a>
+                    </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

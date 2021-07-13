@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/app/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block additional %}{% endblock %}
+    <div class="container-full">
+        <div class="container">
+            <header class="main-header">
+                <div class="logo">
+                    <img src="../../static/uploads/app/logo.jpg" alt="şəxsi loqom">
+                </div>
+                <div class="main-navbar navbar main-font">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">haqqımda</a></li>
+                        <li><a href="{{ url_for('works') }}">işlərim</a></li>
+                        <li><a href="{{ url_for('blogs') }}">məqalələrim</a></li>
+                        <li><a href="{{ url_for('contact') }}">əlaqə</a></li>
+                    </ul>
+                </div>
+                <i onclick="showMenu()" class="fas fa-bars"></i>
+            </header>
+            <header class="responsive-header">
+                <div style="width: 100%;" class="navbar main-font">
+                    <ul style="justify-content: space-around; padding: 20px 0;">
+                        <li><a href="{{ url_for('index') }}">haqqımda</a></li>
+                        <li><a href="{{ url_for('works') }}">işlərim</a></li>
+                        <li><a href="{{ url_for('blogs') }}">məqalələrim</a></li>
+                        <li><a href="{{ url_for('contact') }}">əlaqə</a></li>
+                    </ul>
+                </div>
+            </header>
+            <div class="main-part">
+                {% block content %}{% endblock %}
+            </div>
+            {% block footer %}
+            <footer class="main-font">
+                <span class="lets-chat">Let's chat!</span>
+                <div class="footer-contact">
+                    <p>Email: <span>nijatshj@code.edu.az</span></p>
+                    <p>Whatsapp: <span>+99455-415-23-12</span></p>
+                    <p>Github: <span>nijatshj@code.edu.az</span></p>
+                </div>
+            </footer>
+            {% endblock %}
+        </div>
+    </div>
+    {% block js %}{% endblock %}
+</body>
+</html>

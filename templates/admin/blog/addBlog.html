@@ -1,0 +1,68 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Məqalə əlavə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.header.label() }}
+      {% if form.header.errors %}
+        {{ form.header(class="form-control form-control-lg is-invalid", placeholder = "Başlıq daxil et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.header.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.header(class="form-control form-contorl-lg", placeholder = "Başlıq daxil et") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.content.label() }}
+        {% if form.content.errors %}
+          {{ form.content(class="form-control form-control-lg is-invalid", placeholder = "Məzmunu daxil et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.content.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.content(class="form-control form-contorl-lg", placeholder = "Məzmunu daxil et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.date.label() }}
+        {% if form.date.errors %}
+          {{ form.date(class="form-control form-control-lg is-invalid", placeholder = "gün/ay/il")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.date.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.date(class="form-control form-contorl-lg", placeholder = "gün/ay/il") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.url.label() }}
+        {% if form.url.errors %}
+          {{ form.url(class="form-control form-control-lg is-invalid", placeholder = "URL daxil et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.url.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.url(class="form-control form-contorl-lg", placeholder = "URL daxil et") }}
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "app/layout.html" %}
+    {% block head %}
+    <link rel="stylesheet" href="../../static/css/app/works.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <title>İşlərim</title>
+    {% endblock %}
+    {% block additional %}
+    <div class="background"></div>
+    {% endblock %}
+    {% block content %}
+    <h2 class="main-font page-info">SEÇİLMİŞ İŞLƏRİM</h2>
+    <div class="section">
+        {% for project in projects %}
+        <div class="project">
+            <h3 class="header-font">{{ project.name }}</h3>
+            {% if project.technologies %}
+            <ul class="project-techs main-font">
+                {% for tech in project.technologies %}
+                <li>#{{ tech.name }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="technology">
+                <p class="main-font">{{ project.about }}</p>
+                <p style="margin-top: 20px;" class="main-font">Bu layihədə etdiklərim:</p>
+                <ul class="main-font">
+                    {% for work in project.my_works %}
+                    <li>{{ work.name }}</li>
+                    {% endfor %}
+                </ul>
+                <p class="main-font">Layihənin əhatə etdiyi tarix aralığı: <span> {{ project.startDate.strftime("%d/%m/%Y")}} - {{ project.finishDate.strftime("%d/%m/%Y") }} | {{ (project.finishDate - project.startDate).days }} gün</span></p>
+                <ul class="references main-font">
+                    {% if project.photos %}
+                    <li onclick="showSlider(this)">Layihənin şəkilləri</li>
+                    {% endif %}
+                    {% if project.code_url %}
+                    <li><a href="{{ project.code_url }}" target="_blank">Layihənin kodları</a></li>
+                    {% endif %}
+                    {% if project.real_url %}
+                    <li><a href="{{ project.real_url }}" target="_blank">Layihənin işlək halı</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="slider">
+                {% for photo in project.photos %}
+                <div class="slide">
+                    <img src="../../static/uploads/{{ photo.name }}" alt="">
+                </div>
+                {% endfor %}
+                <div class="arrows">
+                    <i onclick="changePrev(this)" class="fas fa-chevron-left"></i>
+                    <i onclick="changeNext(this)" class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+    {% block js%}
+    <script src="../../static/js/app/works.js"></script>
+    {% endblock %}

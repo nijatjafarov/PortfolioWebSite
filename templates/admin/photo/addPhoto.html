@@ -1,0 +1,25 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Layihəyə şəkil əlavə et</h3>
+<form method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.name.label() }}
+        {{ form.name(class="form-control-file", multiple = "true") }}
+        {% if form.name.errors %}
+            {% for error in form.name.errors %}
+                <span class="text-danger">{{ error }}</span><br>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="project_id">Layihə</label>
+        <select class="form-control" id="project_id" name="project_id">
+            {% for project in projects %}
+                <option value="{{ project.id }}">{{ project.name }}</option>
+            {% endfor %}
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>
+</form>
+{% endblock %}

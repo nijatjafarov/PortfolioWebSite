@@ -1,0 +1,98 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Layihəni redaktə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label() }}
+      {% if form.name.errors %}
+        {{ form.name(class="form-control form-control-lg is-invalid", value = project.name, placeholder = "Adda düzəliş et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.name(class="form-control form-contorl-lg", value = project.name, placeholder = "Adda düzəliş et") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.about.label() }}
+        {% if form.about.errors %}
+          {{ form.about(class="form-control form-control-lg is-invalid", value = project.about, placeholder = "Məlumatda düzəliş et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.about.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.about(class="form-control form-contorl-lg", value = project.about, placeholder = "Məlumatda düzəliş et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.code_url.label() }}
+        {% if form.code_url.errors %}
+          {{ form.code_url(class="form-control form-control-lg is-invalid", value = project.code_url, placeholder = "Kod URL-də düzəliş et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.code_url.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.code_url(class="form-control form-contorl-lg", value = project.code_url, placeholder = "Kod URL-də düzəliş et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.real_url.label() }}
+        {% if form.real_url.errors %}
+          {{ form.real_url(class="form-control form-control-lg is-invalid", value = project.real_url, placeholder = "Real halın URL-də düzəliş et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.real_url.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.real_url(class="form-control form-contorl-lg", value = project.real_url, placeholder = "Real halın URL-də düzəliş et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.startDate.label() }}
+        {% if form.startDate.errors %}
+          {{ form.startDate(class="form-control form-control-lg is-invalid", value = project.startDate, placeholder = "gün/ay/il")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.startDate.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.startDate(class="form-control form-contorl-lg", value = project.startDate, placeholder = "gün/ay/il") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.finishDate.label() }}
+        {% if form.finishDate.errors %}
+          {{ form.finishDate(class="form-control form-control-lg is-invalid", value = project.finishDate, placeholder = "gün/ay/il")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.finishDate.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.finishDate(class="form-control form-contorl-lg", value = project.finishDate, placeholder = "gün/ay/il") }}
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Düzəliş et</button>
+</form>
+{% endblock %}

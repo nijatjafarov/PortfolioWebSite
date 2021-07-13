@@ -1,0 +1,23 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Məlumat əlavə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.info.label() }}
+      {% if form.info.errors %}
+        {{ form.info(class="form-control form-control-lg is-invalid", placeholder = "Özün haqqında məlumat yaz")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.info.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.info(class="form-control form-contorl-lg", placeholder = "Özün haqqında məlumat yaz") }}
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>
+</form>
+{% endblock %}

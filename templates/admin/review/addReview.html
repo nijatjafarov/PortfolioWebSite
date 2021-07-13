@@ -1,0 +1,53 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Rəy əlavə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.review.label() }}
+      {% if form.review.errors %}
+        {{ form.review(class="form-control form-control-lg is-invalid", placeholder = "Rəy daxil et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.review.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.review(class="form-control form-contorl-lg", placeholder = "Rəy daxil et") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.review_owner.label() }}
+        {% if form.review_owner.errors %}
+          {{ form.review_owner(class="form-control form-control-lg is-invalid", placeholder = "Rəy sahibini qeyd et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.review_owner.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.review_owner(class="form-control form-contorl-lg", placeholder = "Rəy sahibini qeyd et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.owner_profession.label() }}
+        {% if form.owner_profession.errors %}
+          {{ form.owner_profession(class="form-control form-control-lg is-invalid", placeholder = "Rəy sahibinin vəzifəsi")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.owner_profession.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.owner_profession(class="form-control form-contorl-lg", placeholder = "Rəy sahibinin vəzifəsi") }}
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>
+</form>
+{% endblock %}

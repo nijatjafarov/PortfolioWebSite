@@ -1,0 +1,50 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Texnologiya layihəsi redaktə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label() }}
+      {% if form.name.errors %}
+        {{ form.name(class="form-control form-control-lg is-invalid", value = task.name, placeholder = "Adda dəyişiklik et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.name(class="form-control form-contorl-lg", value = task.name, placeholder = "Adda dəyişiklik et") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.url.label() }}
+        {% if form.url.errors %}
+          {{ form.url(class="form-control form-control-lg is-invalid", value = task.url, placeholder = "URL-də dəyişiklik et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.url.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.url(class="form-control form-contorl-lg", value = task.url, placeholder = "URL-də dəyişiklik et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="technology_id">Texnologiya</label>
+        <select class="form-control" id="technology_id" name="technology_id">
+            {% for technology in technologies %}
+            {% if technology == selected_technology %}
+                <option value="{{ technology.id }}" selected>{{ selected_technology.name }}</option>
+            {% else %}
+                <option value="{{ technology.id }}">{{ technology.name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Dəyişiklik et</button>
+</form>
+{% endblock %}

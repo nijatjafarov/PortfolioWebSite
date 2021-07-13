@@ -1,0 +1,277 @@
+{% extends "admin/layout.html" %}
+{% block title %}
+<title>Admin səhifəsi</title>
+{% endblock %}
+{% block content %}
+<a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+<div style="margin-top: 8%;" class="row">
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Əlavə informasiya</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addinfo') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">İnformasiya</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in info %}
+        <tr>
+          <td>{{ i.info }}</td>
+          <td>
+            <a href="{{ url_for('updateinfo', id = i.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deleteinfo', id = i.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Texnologiyalar</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addtech') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Ad</th>
+          <th scope="col">Başlama tarixi</th>
+          <th scope="col">Bitmə tarixi</th>
+          <th scope="col">İstifadə halı</th>
+          <th scope="col">Mənbə</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tech in techs %}
+        <tr>
+          <td>{{ tech.name }}</td>
+          <td>{{ tech.startDate }}</td>
+          <td>{{ tech.finishDate }}</td>
+          <td>{{ tech.usageCase }}</td>
+          <td>{{ tech.source }}</td>
+          <td>
+            <a href="{{ url_for('updatetech', id = tech.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deletetech', id = tech.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Texnologiyalara uyğun işlər</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addtask') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Ad</th>
+          <th scope="col">URL</th>
+          <th scope="col">Texnologiya adı</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in tasks %}
+        <tr>
+          <td>{{ task.name }}</td>
+          <td>{{ task.url }}</td>
+          <td>{{ technologies.query.get(task.technology_id).name }}</td>
+          <td>
+            <a href="{{ url_for('updatetask', id = task.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deletetask', id = task.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Rəylər</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addreview') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Rəy</th>
+          <th scope="col">Rəy sahibi</th>
+          <th scope="col">Rəy sahibinin vəzifəsi</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for review in reviews %}
+        <tr>
+          <td>{{ review.review }}</td>
+          <td>{{ review.review_owner }}</td>
+          <td>{{ review.owner_profession }}</td>
+          <td>
+            <a href="{{ url_for('updatereview', id = review.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deletereview', id = review.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Məqalələr</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addblog') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Başlıq</th>
+          <th scope="col">Kontent(qısa)</th>
+          <th scope="col">Tarix</th>
+          <th scope="col">URL</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for blog in blogs %}
+        <tr>
+          <td>{{ blog.header }}</td>
+          <td>{{ blog.content[:40] }}...</td>
+          <td>{{ blog.date.strftime("%d/%m/%Y") }}</td>
+          <td>{{ blog.url }}</td>
+          <td>
+            <a href="{{ url_for('updateblog', id = blog.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deleteblog', id = blog.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Proyektlər</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addproject') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Ad</th>
+          <th scope="col">Haqqında(qısa)</th>
+          <th scope="col">Kod URL</th>
+          <th scope="col">Real URL</th>
+          <th scope="col">Başlama tarixi</th>
+          <th scope="col">Bitmə tarixi</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+        <tr>
+          <td>{{ project.name }}</td>
+          <td>{{ project.about[:40] }}...</td>
+          <td>{{ project.code_url }}</td>
+          <td>{{ project.real_url }}</td>
+          <td>{{ project.startDate.strftime("%d/%m/%Y") }}</td>
+          <td>{{ project.finishDate.strftime("%d/%m/%Y") }}</td>
+          <td>
+            <a href="{{ url_for('updateproject', id = project.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deleteproject', id = project.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Proyektlər və uyğun texnologiyalar</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addtechtoproj') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Proyekt</th>
+          <th scope="col">Texnologiya</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+        {% for i in range(project.technologies|length) %}
+        <tr>
+          <td>{{ project.name }}</td>
+          <td>{{ project.technologies[i].name }}</td>
+          <td>
+            <a href="{{ url_for('updatetechofproj', proj_id = project.id, tech_id = project.technologies[i].id) }}">Düzəlt</a>
+            <a href="{{ url_for('deletetechofproject', proj_id = project.id, tech_id = project.technologies[i].id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Proyektlərin şəkilləri</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addphoto') }}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Proyekt</th>
+          <th scope="col">Şəklin adı</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for photo in photos %}
+        <tr>
+          <td>{{ projs.query.get(photo.project_id).name }}</td>
+          <td>{{ photo.name }}</td>
+          <td>
+            <a href="{{ url_for('updatephoto', id = photo.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deletephoto', id = photo.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div style="display: flex; margin-bottom: 10px;">
+      <h3>Proyektlərdə gördüyüm işlər</h3>
+      <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addwork')}}"><i class="bi bi-plus-square"></i></a>
+    </div>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Proyekt</th>
+          <th scope="col">Gördüyüm iş</th>
+          <th scope="col">Redaktə</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for work in works %}
+        <tr>
+          <td>{{ work.name }}</td>
+          <td>{{ projs.query.get(work.project_id).name }}</td>
+          <td>
+            <a href="{{ url_for('updatework', id = work.id) }}">Düzəlt</a>
+            <a href="{{ url_for('deletework', id = work.id) }}">Sil</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <h3>İstifadəçidən gələn mesajlar</h3>
+  <table style="margin-bottom: 5%;" class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Ad</th>
+          <th scope="col">Emeyl</th>
+          <th scope="col">Mesaj</th>
+          <th scope="col">Tarix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+        <tr>
+          <td>{{ message.userName }}</td>
+          <td>{{ message.userMail }}</td>
+          <td>{{ message.message }}</td>
+          <td>{{ message.date.strftime("%d/%m/%Y %H:%M") }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

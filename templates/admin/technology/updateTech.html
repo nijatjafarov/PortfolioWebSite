@@ -1,0 +1,83 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Texnologiya redaktə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label() }}
+      {% if form.name.errors %}
+        {{ form.name(class="form-control form-control-lg is-invalid", value = tech.name, placeholder = "Adda düzəliş et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.name(class="form-control form-contorl-lg", value = tech.name, placeholder = "Adda düzəliş et") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.usageCase.label() }}
+        {% if form.usageCase.errors %}
+          {{ form.usageCase(class="form-control form-control-lg is-invalid", value = tech.usageCase, placeholder = "İstifadə halında düzəliş et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.usageCase.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.usageCase(class="form-control form-contorl-lg", value = tech.usageCase, placeholder = "İstifadə halında düzəliş et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.startDate.label() }}
+        {% if form.startDate.errors %}
+          {{ form.startDate(class="form-control form-control-lg is-invalid", value = tech.startDate, placeholder = "gün/ay/il")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.startDate.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.startDate(class="form-control form-contorl-lg", value = tech.startDate, placeholder = "gün/ay/il") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.finishDate.label() }}
+        {% if form.finishDate.errors %}
+          {{ form.finishDate(class="form-control form-control-lg is-invalid", value = tech.startDate, placeholder = "gün/ay/il")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.finishDate.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.finishDate(class="form-control form-contorl-lg", value = tech.startDate, placeholder = "gün/ay/il") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.source.label() }}
+        {% if form.source.errors %}
+          {{ form.source(class="form-control form-control-lg is-invalid", value = tech.source, placeholder = "Mənbədə düzəliş et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.source.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.source(class="form-control form-contorl-lg", value = tech.source, placeholder = "Mənbədə düzəliş et") }}
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Düzəliş et</button>
+</form>
+{% endblock %}

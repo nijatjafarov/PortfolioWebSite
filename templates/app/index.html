@@ -1,0 +1,64 @@
+{% extends "app/layout.html" %}
+    {% block head %}
+    <title>Haqqımda</title>
+    {% endblock %}
+    {% block content %}
+    <div class="info">
+        <h1 style="font-size: 70px;" class="intro-header header-font">Hi there, I'm Eina!</h1>
+        <p class="main-info main-font">I’m a front-end developer who loves building user-friendly websites and web apps, enjoys writing documentation and loves helping people learn how to code. I also really like drawing with CSS. Most recently, I’ve been building web apps with React and serverless providers like Firebase and Netlify.
+
+            I’m currently interested in learning more about accessibility and delving deeper into CSS/JS animations.
+            
+            </p>
+        {% if infoList %}
+        <h3 class="additional-info-list main-font">Həmçinin...</h3>
+        <ul class="main-font">
+            {% for info in infoList %}
+            <li>{{ info.info }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="section">
+        <h3 class="header-font">İstifadə etdiyim texnologiyalar&shy</h3>
+        {% for tech in techs %}
+        <div class="technology">
+            <h4 class="header-font">{{ tech.name }}</h4>
+            <p class="main-font">İstifadə vəziyyəti: <span>{{ tech.usageCase }}</span></p>
+            <p class="main-font">Başlama tarixi: <span>{{ tech.startDate }}</span></p>
+            {% if tech.finishDate %}
+            <p class="main-font">Bitmə tarixi: <span>{{ tech.finishDate }}</span></p>
+            {% else %}
+            <p class="main-font">Bitmə tarixi: <span>Öyrənməyə hələ çox şey var...</span></p>
+            {% endif %}
+            <p class="main-font">Öyrəndiyim yer/mənbə: <span>{{ tech.source }}</span></p>
+            <p class="main-font">Bu dövr ərzində görülmüş işlər:</p>
+            <ul class="main-font">
+                {% for task in tech.tasks %}
+                <li><a href="{{ task.url }}">{{ task.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    {% if reviews %}
+    <div class="section reviews">
+        <h3 class="header-font">Haqqımda bildirilən rəylər</h3>
+        <div class="comments-container">
+            <div class="comments">
+                {% for review in reviews %}
+                    <div class="comment">
+                        <h4 class="comment-quote header-font">“</h4>
+                        <p class="comment-content main-font">{{ review.review }}</p>
+                        <h5 class="comment-owner main-font">{{ review.review_owner }}</h5>
+                        <h6 class="owner-profession main-font">{{ review.owner_profession }}</h6>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endblock %}
+    {% block js %}
+    <script src="../../static/js/app/home.js"></script>
+    {% endblock %}

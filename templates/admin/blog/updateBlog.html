@@ -1,0 +1,68 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Məqalə redaktə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.header.label() }}
+      {% if form.header.errors %}
+        {{ form.header(class="form-control form-control-lg is-invalid", value = blog.header, placeholder = "Başlıqda dəyişiklik et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.header.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.header(class="form-control form-contorl-lg", value = blog.header, placeholder = "Başlıqda dəyişiklik et") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.content.label() }}
+        {% if form.content.errors %}
+          {{ form.content(class="form-control form-control-lg is-invalid", value = blog.content, placeholder = "Məzmunda dəyişiklik et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.content.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.content(class="form-control form-contorl-lg", value = blog.content, placeholder = "Məzmunda dəyişiklik et") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.date.label() }}
+        {% if form.date.errors %}
+          {{ form.date(class="form-control form-control-lg is-invalid", value = blog.date, placeholder = "gün/ay/il")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.date.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.date(class="form-control form-contorl-lg", value = blog.date, placeholder = "gün/ay/il") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.url.label() }}
+        {% if form.url.errors %}
+          {{ form.url(class="form-control form-control-lg is-invalid", value = blog.url, placeholder = "URL-də dəyişiklik daxil et")}}
+          
+            <div class="invalid-feedback">
+              {% for error in form.url.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          
+        {% else %}
+            {{ form.url(class="form-control form-contorl-lg", value = blog.url, placeholder = "URL-də dəyişiklik et") }}
+        {% endif %}
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Dəyişiklik et</button>
+</form>
+{% endblock %}
