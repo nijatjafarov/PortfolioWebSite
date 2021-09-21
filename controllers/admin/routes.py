@@ -1,10 +1,10 @@
 from flask.globals import request
 from app import app
-from model import UserMessage, db, AdditionalInfo, Technology, Task, Review, Blog, Project, \
+from model import Source, UserMessage, db, AdditionalInfo, Technology, Task, Review, Blog, Project, \
     Photo, MyWorkOnProject
 from flask import render_template, redirect, url_for
-from form import AdditionalInfoForm, TechnologyForm, TaskForm, ReviewForm, BlogForm, \
-    ProjectForm, PhotoForm, MyWorkOnProjectForm
+from form import AdditionalInfoForm, TechnologyForm, SourceForm, TaskForm, ReviewForm, BlogForm, ProjectForm, \
+    PhotoForm, MyWorkOnProjectForm
 import os
 from werkzeug.utils import secure_filename
 
@@ -28,9 +28,10 @@ def admin():
     works = MyWorkOnProject.query.all()
     messages = UserMessage.query.all()
     photos = Photo.query.all()
+    sources = Source.query.all()
     template = render_template("admin/admin.html", info = info, techs = techs, tasks = tasks, 
     technologies = Technology(), reviews = reviews, blogs = blogs, projects = projects,
-    works = works, projs = Project(), messages = messages, photos = photos)
+    works = works, projs = Project(), messages = messages, photos = photos, sources = sources)
     return checkLogin(template)
 
 # Additional Info
@@ -75,7 +76,7 @@ def addtech():
             usageCase = form.usageCase.data,
             startDate = form.startDate.data,
             finishDate = form.finishDate.data,
-            source = form.source.data
+            superTech = form.superTech.data
         ))
         db.session.commit()
         return redirect(url_for("admin"))
@@ -91,7 +92,7 @@ def updatetech(id):
         tech.usageCase = form.usageCase.data
         tech.startDate = form.startDate.data
         tech.finishDate = form.finishDate.data
-        tech.source = form.source.data
+        tech.superTech = form.superTech.data
         db.session.commit()
         return redirect(url_for("admin"))
     template = render_template("admin/technology/updateTech.html", form = form, tech = tech)
@@ -104,6 +105,37 @@ def deletetech(id):
     template = redirect(url_for("admin"))
     return checkLogin(template)
     
+    
+ # Source
+@app.route("/admin/addsource", methods = ["GET", "POST"])
+def addsource():
+    form = SourceForm()
+    if form.validate_on_submit():
+        db.session.add(Source(name = form.name.data))
+        db.session.commit()
+        return redirect(url_for("admin"))
+    template = render_template("admin/source/addSource.html", form = form)
+    return checkLogin(template)
+
+@app.route("/admin/updatesource/<int:id>", methods = ["GET", "POST"])
+def updatesource(id):
+    form = TechnologyForm()
+    source = Source.query.get(id)
+    if form.validate_on_submit():
+        source.name = form.name.data
+        db.session.commit()
+        return redirect(url_for("admin"))
+    template = render_template("admin/source/updateSource.html", form = form, source = source)
+    return checkLogin(template)
+
+@app.route("/admin/deletesource/<int:id>", methods = ["GET", "POST"])
+def deletesource(id):
+    db.session.delete(Source.query.get(id))
+    db.session.commit()
+    template = redirect(url_for("admin"))
+    return checkLogin(template)
+
+
 # Task of technology   
 @app.route("/admin/addtask", methods = ["GET", "POST"])
 def addtask():
@@ -377,6 +409,48 @@ def deletetechofproject(proj_id, tech_id):
     selected_project = Project.query.get(proj_id)
     selected_technology = Technology.query.get(tech_id)
     selected_project.technologies.remove(selected_technology)
+    db.session.commit()
+    template = redirect(url_for("admin"))
+    return checkLogin(template)
+
+
+# Source of Tech 
+@app.route("/admin/addsourcetotech", methods = ["GET", "POST"])
+def addsourcetotech():
+    technologies = Technology.query.all()
+    sources = Source.query.all()
+    if request.method == "POST":
+        sources_id = request.form.getlist('source_id')
+        technology = Technology.query.get(request.form["technology_id"])
+        for id in sources_id:
+            technology.sources.append(Source.query.get(id))
+        db.session.commit()
+        return redirect(url_for("admin"))
+    template = render_template("admin/sourceAndTech/addSourceToTech.html", technologies = technologies,  sources = sources)
+    return checkLogin(template)
+
+@app.route("/admin/updatesourceoftech/<int:tech_id>/<int:source_id>", methods = ["GET", "POST"])
+def updatesourceoftech(tech_id, source_id):
+    technologies = Technology.query.all()
+    sources = Source.query.all()
+    selected_technology = Technology.query.get(tech_id)
+    selected_source = Source.query.get(source_id)
+    if request.method == "POST":
+        technology = Technology.query.get(request.form["technology_id"])
+        index = technology.sources.index(selected_source)
+        technology.sources.remove(selected_source)
+        technology.sources.insert(index, Source.query.get(request.form["source_id"]))
+        db.session.commit()
+        return redirect(url_for("admin"))
+    template = render_template("admin/sourceAndTech/updateSourceOfTech.html",
+    technologies = technologies, sources = sources, selected_technology = selected_technology, selected_source = selected_source)
+    return checkLogin(template)
+
+@app.route("/admin/deletesourceoftech/<int:tech_id>/<int:source_id>", methods = ["GET", "POST"])
+def deletesourceoftech(tech_id, source_id):
+    selected_technology = Technology.query.get(tech_id)
+    selected_source = Source.query.get(source_id)
+    selected_technology.sources.remove(selected_source)
     db.session.commit()
     template = redirect(url_for("admin"))
     return checkLogin(template)

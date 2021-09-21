@@ -1,0 +1,23 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Mənbə əlavə et</h3>
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label() }}
+      {% if form.name.errors %}
+        {{ form.name(class="form-control form-control-lg is-invalid", placeholder = "Ad daxil et")}}
+        
+          <div class="invalid-feedback">
+            {% for error in form.name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        
+      {% else %}
+          {{ form.name(class="form-control form-contorl-lg", placeholder = "Ad daxil et") }}
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>
+</form>
+{% endblock %}

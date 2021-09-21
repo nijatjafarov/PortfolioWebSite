@@ -64,18 +64,18 @@
         {% endif %}
       </div>
       <div class="form-group">
-        {{ form.source.label() }}
-        {% if form.source.errors %}
-          {{ form.source(class="form-control form-control-lg is-invalid", placeholder = "Mənbə daxil et")}}
+        {{ form.superTech.label() }}
+        {% if form.superTech.errors %}
+          {{ form.superTech(class="form-control form-control-lg is-invalid", placeholder = "Üst texnologiya yaz")}}
           
             <div class="invalid-feedback">
-              {% for error in form.source.errors %}
+              {% for error in form.superTech.errors %}
               <span>{{ error }}</span>
               {% endfor %}
             </div>
           
         {% else %}
-            {{ form.source(class="form-control form-contorl-lg", placeholder = "Mənbə daxil et") }}
+            {{ form.superTech(class="form-control form-contorl-lg", placeholder = "Üst texnologiya yaz") }}
         {% endif %}
       </div>
     <button type="submit" class="btn btn-primary mb-2">Əlavə et</button>

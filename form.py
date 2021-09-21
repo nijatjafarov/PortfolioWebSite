@@ -12,7 +12,7 @@ class TechnologyForm(FlaskForm):
     usageCase = TextField("İstifadə vəziyyəti", validators = [Length(max=100)])
     startDate = DateField("Başlama tarixi", format='%d/%m/%Y')
     finishDate = DateField("Bitmə tarixi", format='%d/%m/%Y', validators=[Optional()])
-    source = TextField("İstifadə vəziyyəti", validators = [Length(max=70)])
+    superTech = TextField("Üst texnologiya", validators = [Length(max=30)])
 
 class TaskForm(FlaskForm):
     name = TextField("Ad", validators = [DataRequired(), Length(max=150)])
@@ -27,7 +27,7 @@ class BlogForm(FlaskForm):
     header = TextField("Başlıq", validators = [DataRequired(), Length(max=150)])
     content = TextField("Məzmun", validators = [DataRequired()])
     date = DateField("Tarix", format='%d/%m/%Y')
-    url = TextField("URL", validators = [Length(max=150), DataRequired()])
+    url = TextField("URL", validators = [DataRequired()])
 
 class ProjectForm(FlaskForm):
     name = TextField("Ad", validators = [DataRequired(), Length(max=70)])
@@ -52,3 +52,6 @@ class LoginForm(FlaskForm):
     adminname = TextField("Admin adı", validators=[DataRequired(), Length(max=20)])
     password = PasswordField("Şifrə", validators=[DataRequired()])
     submit = SubmitField("Daxil ol")
+
+class SourceForm(FlaskForm):
+    name = TextField("Ad", validators = [DataRequired(), Length(max=30)])

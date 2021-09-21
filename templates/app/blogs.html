@@ -8,15 +8,18 @@
     <div class="section">
         {% for blog in blogs %}
         <div class="blog">
-            <h3 class="header-font">{{ blog.header }}</h3>
-            <div class="technology">
-                <p class="main-font">{{ blog.content }}...</p>
+            <h3 style="margin-bottom: 18px;" class="header-font">// {{ blog.header }}</h3>
+            <div style="margin-top: 0;" class="technology">
+                <p style="color: #caa050" class="main-font">"""{{ blog.content }}..."""</p>
                     <div class="date-and-link">
-                        <p class="main-font">Tarix: <span>{{ blog.date.strftime("%d/%m/%Y") }}</span></p>
+                        <p class="main-font">tarix(<span>"{{ blog.date.strftime("%d/%m/%Y") }}"</span>)</p>
                         <a class="main-font" href="{{ blog.url }}" target="_blank">Ətraflı oxuyun</a>
                     </div>
             </div>
         </div>
         {% endfor %}
     </div>
+    {% endblock %}
+    {% block js %}
+    <script src="../../static/js/app/home.js"></script>
     {% endblock %}

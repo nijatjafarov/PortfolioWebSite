@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/app/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -13,9 +16,6 @@
     <div class="container-full">
         <div class="container">
             <header class="main-header">
-                <div class="logo">
-                    <img src="../../static/uploads/app/logo.jpg" alt="şəxsi loqom">
-                </div>
                 <div class="main-navbar navbar main-font">
                     <ul>
                         <li><a href="{{ url_for('index') }}">haqqımda</a></li>
@@ -41,11 +41,11 @@
             </div>
             {% block footer %}
             <footer class="main-font">
-                <span class="lets-chat">Let's chat!</span>
+                <span style="color: #3b994f;" class="lets-chat">// Gəlin danışaq!</span>
                 <div class="footer-contact">
-                    <p>Email: <span>nijatshj@code.edu.az</span></p>
-                    <p>Whatsapp: <span>+99455-415-23-12</span></p>
-                    <p>Github: <span>nijatshj@code.edu.az</span></p>
+                    <p>elektron_poçt(<span>"nijatshj@code.edu.az"</span>)</p>
+                    <p>whatsapp(<span>"+99455-415-23-12"</span>)</p>
+                    <p>github(<span><a style="color: #3b994f;text-decoration:none" href="https://github.com/nijatjafarov" target="_blank">"github.com/nijatjafarov"</a></span>)</p>
                 </div>
             </footer>
             {% endblock %}

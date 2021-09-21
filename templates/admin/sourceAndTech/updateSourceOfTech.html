@@ -1,0 +1,31 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h3>Texnologiyanın mənbəsini redaktə et</h3>
+<form method="POST">
+    <div class="form-group">
+        <label for="technology_id">Texnologiya</label>
+        <select class="form-control" id="technology_id" name="technology_id">
+            {% for technology in technologies %}
+            {% if technology == selected_technology %}
+                <option value="{{ technology.id }}" selected>{{ selected_technology.name }}</option>
+            {% else %}
+                <option value="{{ technology.id }}">{{ technology.name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="technology_id">Mənbə</label>
+        <select class="form-control" id="source_id" name="source_id">
+            {% for source in sources %}
+            {% if source == selected_source %}
+                <option value="{{ source.id }}" selected>{{ selected_source.name }}</option>
+            {% else %}
+                <option value="{{ source.id }}">{{ source.name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary mb-2">Dəyişiklik et</button>
+</form>
+{% endblock %}

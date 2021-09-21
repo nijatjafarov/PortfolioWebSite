@@ -13,15 +13,15 @@ form {
 
 .input-group label {
     display: block;
-    color: #141B4D;
+    color: #3b994f;
     margin-bottom: 5px;
 }
 
 .input-group input, .input-group textarea {
     width: 100%;
-    background-color: #f4f4f5;
-    border: none;
-    border-bottom: 1px solid #141B4D;
+    background-color: #1d1c1c;
+    border: 1px solid gray;
+    color: white;
     padding: 10px 0 10px 10px;
     box-sizing: border-box;
 }
@@ -37,7 +37,7 @@ form {
 button {
     border: none;
     padding: 12px;
-    background-color: #141B4D;
+    background-color: gray;
     cursor: pointer;
 }
 
@@ -49,6 +49,15 @@ button {
 .contact p {
     margin: 0;
     margin-top: 4px;
+}
+
+.error-div {
+    font-size: 15px;
+    color: white;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1.3px;
+    text-decoration-color: green;
 }
 
 /*responsive part*/

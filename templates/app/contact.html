@@ -4,8 +4,8 @@
     <title>Mənimlə əlaqə</title>
     {% endblock %}
     {% block content %}
-    <h2 class="main-font page-info">SEÇİLMİŞ İŞLƏRİM</h2>
-    <p style="margin-top: 70px;" class="main-font">If you’d like to send me a message, I can be reached through various ways! If you prefer email, simply fill out the form below or send me a message directly at</p>
+    <h2 class="main-font page-info">MƏNİMLƏ ƏLAQƏ</h2>
+    <p style="margin-top: 70px;" class="main-font">Əgər mənimlə ünsiyyətə keçmək istəyirsinizsə bunun üçün bir neçə yol mövcuddur. Aşağıdakı formu dolduraraq mənə mesajınızı bildirməyiniz mümkündür.</p>
     <div class="form-and-contact">
         <form method="POST">
             {{ form.hidden_tag() }}
@@ -26,7 +26,7 @@
                 {{ form.userMail.label(class="main-font") }}
                     {% if form.userMail.errors %}
                   {{ form.userMail(class="is-invalid") }}
-                  <div style="font-size: 15px;color:rgb(247, 58, 58)" class="main-font">
+                  <div class="main-font error-div">
                     {% for error in form.userMail.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
@@ -39,7 +39,7 @@
                 {{ form.message.label(class="main-font")}}
                 {% if form.message.errors %}
                 {{ form.message() }}
-                <div style="font-size: 15px;color:rgb(247, 58, 58)" class="main-font">
+                <div class="main-font error-div">
                     {% for error in form.message.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
@@ -49,14 +49,17 @@
                 {% endif %}
             </div>
             <div class="input-group button">
-              <button style="color: white;" class="main-font" type="submit">Send Message</button>
+              <button style="color: white;" class="main-font" type="submit">Mesajı göndərin</button>
             </div>
         </form>
         <div class="contact">
-            <p style="margin-bottom: 20px;" class="main-font">Elsewhere, I can be found at the following:</p>
-            <p class="main-font">Email: <span>nijatshj@code.edu.az</span></p>
-            <p class="main-font">Whatsapp: <span>+99455-415-23-12</span></p>
+            <p style="margin-bottom: 20px;" class="main-font">Həmçinin, aşağıda qeyd edilən kontakt məlumatları ilə də mənlə əlaqə saxlaya bilərsiniz:</p>
+            <p class="main-font">elektron_poçt(<span>"nijatshj@code.edu.az"</span>)</p>
+            <p class="main-font">whatsapp(<span>"+99455-415-23-12"</span>)</p>
         </div>
     </div>
     {% endblock %}
     {% block footer %}{% endblock %}
+    {% block js %}
+    <script src="../../static/js/app/home.js"></script>
+    {% endblock %}

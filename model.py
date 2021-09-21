@@ -13,13 +13,19 @@ class AdditionalInfo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     info = db.Column(db.String(250), unique = True, nullable = False)
 
+sourceAndTech = db.Table("sourceAndTech",
+    db.Column("tech_id", db.Integer, db.ForeignKey("technology.id")),
+    db.Column("source_id", db.Integer, db.ForeignKey("source.id"))
+)
+
 class Technology(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(30), unique = True, nullable = False)
     startDate = db.Column(db.DateTime)
     finishDate = db.Column(db.DateTime)
     usageCase = db.Column(db.String(100))
-    source = db.Column(db.String(70))
+    superTech = db.Column(db.String(20))
+    sources = db.relationship("Source", secondary=sourceAndTech)
     tasks = db.relationship("Task", backref = "technology", lazy = True)
 
 class Task(db.Model):
@@ -27,6 +33,10 @@ class Task(db.Model):
     name = db.Column(db.String(150), nullable = False)
     url = db.Column(db.String(150))
     technology_id = db.Column(db.Integer, db.ForeignKey('technology.id'), nullable=False)
+
+class Source(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(30), nullable = False)
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -39,8 +49,8 @@ class Blog(db.Model):
     header = db.Column(db.String(150), nullable = False)
     content = db.Column(db.Text, nullable = False)
     date = db.Column(db.DateTime)
-    url = db.Column(db.String(150))
-
+    url = db.Column(db.String())
+    
 class UserMessage(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     userName = db.Column(db.String(30), nullable = False)
@@ -74,10 +84,4 @@ class MyWorkOnProject(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(150), nullable = False)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
-
-# s = Student()
-# c = Class()
-# c.students.append(s)
-# db.session.add(c)
-# db.session.commit()
 

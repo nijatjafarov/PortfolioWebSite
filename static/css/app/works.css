@@ -29,15 +29,21 @@
 
 .references li {
     list-style: none;
-    text-decoration: 3px underline #FA865A;
-    font-weight: 900;
-    color: #141B4D;
     cursor: pointer;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1.3px;
+    text-decoration-color: green;
 }
 
 .references li a {
-    color: #141B4D;
-    text-decoration: 3px underline #FA865A;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1.3px;
+    text-decoration-color: green;
+}
+
+p span {
+    color: #3b994f;
 }
 
 .slider {

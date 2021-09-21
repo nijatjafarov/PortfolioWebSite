@@ -39,7 +39,7 @@
           <th scope="col">Başlama tarixi</th>
           <th scope="col">Bitmə tarixi</th>
           <th scope="col">İstifadə halı</th>
-          <th scope="col">Mənbə</th>
+          <th scope="col">Üst texnologiya</th>
           <th scope="col">Redaktə</th>
         </tr>
       </thead>
@@ -50,7 +50,7 @@
           <td>{{ tech.startDate }}</td>
           <td>{{ tech.finishDate }}</td>
           <td>{{ tech.usageCase }}</td>
-          <td>{{ tech.source }}</td>
+          <td>{{ tech.superTech }}</td>
           <td>
             <a href="{{ url_for('updatetech', id = tech.id) }}">Düzəlt</a>
             <a href="{{ url_for('deletetech', id = tech.id) }}">Sil</a>
@@ -59,6 +59,56 @@
         {% endfor %}
       </tbody>
   </table>
+  <div style="display: flex; margin-bottom: 10px;">
+    <h3>Mənbələr</h3>
+    <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addsource') }}"><i class="bi bi-plus-square"></i></a>
+  </div>
+<table style="margin-bottom: 5%;" class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ad</th>
+        <th scope="col">Redaktə</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for source in sources %}
+      <tr>
+        <td>{{ source.name }}</td>
+        <td>
+          <a href="{{ url_for('updatesource', id = source.id) }}">Düzəlt</a>
+          <a href="{{ url_for('deletesource', id = source.id) }}">Sil</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+  <div style="display: flex; margin-bottom: 10px;">
+    <h3>Texnologiyalar və uyğun mənbələr</h3>
+    <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addsourcetotech') }}"><i class="bi bi-plus-square"></i></a>
+  </div>
+<table style="margin-bottom: 5%;" class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Texnologiya</th>
+        <th scope="col">Mənbə</th>
+        <th scope="col">Redaktə</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tech in techs %}
+      {% for i in range(tech.sources|length) %}
+      <tr>
+        <td>{{ tech.name }}</td>
+        <td>{{ tech.sources[i].name }}</td>
+        <td>
+          <a href="{{ url_for('updatesourceoftech', tech_id = tech.id, source_id = tech.sources[i].id) }}">Düzəlt</a>
+          <a href="{{ url_for('deletesourceoftech', tech_id = tech.id, source_id = tech.sources[i].id) }}">Sil</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% endfor %}
+    </tbody>
+</table>
   <div style="display: flex; margin-bottom: 10px;">
       <h3>Texnologiyalara uyğun işlər</h3>
       <a style="font-size: 1.5em; margin-left: 10px;" href="{{ url_for('addtask') }}"><i class="bi bi-plus-square"></i></a>

@@ -9,9 +9,10 @@
 }
 
 .date-and-link a {
-    text-decoration: 3px underline #FA865A;
-    font-weight: 900;
-    color: #141B4D;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1.3px;
+    text-decoration-color: green;
 }
 
 /*responsive part*/
